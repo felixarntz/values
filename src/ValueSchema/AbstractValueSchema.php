@@ -111,7 +111,19 @@ abstract class AbstractValueSchema implements ValueSchema
      */
     public function format(Value $value, int $flags = 0)
     {
-        return $this->formatBase($value, $flags);
+        $formatted = $this->formatBase($value, $flags);
+
+        if ($this->hasConfigKey(ValueSchemaConfigSchema::FORMAT_CALLBACK)) {
+            $formatted = call_user_func_array(
+                $this->getConfigKey(ValueSchemaConfigSchema::FORMAT_CALLBACK),
+                [
+                    $formatted,
+                    $flags,
+                ]
+            );
+        }
+
+        return $formatted;
     }
 
     /**

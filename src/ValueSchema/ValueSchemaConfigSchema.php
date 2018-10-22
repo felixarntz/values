@@ -26,6 +26,7 @@ class ValueSchemaConfigSchema implements ConfigSchema
     const DEFAULT           = 'default';
     const VALIDATE_CALLBACK = 'validate_callback';
     const SANITIZE_CALLBACK = 'sanitize_callback';
+    const FORMAT_CALLBACK   = 'format_callback';
     const REQUIRED          = 'required';
     const SKIP              = 'skip';
 
